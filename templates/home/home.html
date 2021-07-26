@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title%} Home {% endblock title%}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block body %}
+<style>
+
+img {
+  width: 100%;
+  height: 25em;
+}
+#welcome {
+  position: absolute;
+  top: 15em;
+  right: 22em;
+  color: black;
+}
+#gotoblogs{
+position: absolute;
+  top: 35em;
+  left: 15.5em;
+}
+#createblogs{
+position: absolute;
+  top: 35em;
+  right: 15.5em;
+}
+.footer-dark {
+  padding:50px 0;
+  color:#f0f9ff;
+  background-color:#282d32;
+}
+
+.footer-dark h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+#About{
+border-radius: 50%;
+border: 1px solid #ddd;
+padding: 3px;
+width: 250px;
+height: 220px;
+}
+</style>
+
+    <div class="my-3">
+     <div class="container">
+        <img src="static/img/desktop-blog.webp">
+         <div class="text-block" id="welcome">
+            <h2 style="font-size: 40px;">Welcome to Heart-to-Keys</h2>
+        </div>
+     </div>
+  </div>
+ <div class="my-4">
+     <div class="container">
+        <img src="static/img/home.jpg">
+         <div class="text-block" id="gotoblogs">
+         <h3>Want to see Blogs</h3>
+         <a class="btn btn-outline-dark btn-lg my-1 mx-5" href="/blog" role="button"><b>Go to Blog</b></a>
+         </div>
+         <div class="text-block" id="createblogs">
+         <h3>Want to Create Blogs</h3>
+         <a class="btn btn-outline-dark btn-lg my-1 mx-5" href="/createblog" role="button"><b>Create Blog</b></a>
+         </div>
+     </div>
+ </div>
+
+
+<div class="footer-dark mx-5" id="AboutUsHome">
+<footer>
+            <div class="container row d-flex mx-3">
+                <div class="col-md-4 my-3 ">
+                         <img  src="static/img/AboutUs.jpg" id="About">
+                    </div>
+                    <div class="col-md-8 my-3">
+                        <h3 class="text-center">About Us</h3>
+                        <p><b>Amandeep Singh Bhatia</b>, a final year student doing B.TECH in Information Technology. Soon going to work for a company. I have created this application just for the enhancement of my skills.</p>
+                           <p> <b>Heart-to-keys</b>, is a system I have developed, allows users to create their own blogs, where user can publish their blogs according to their mood and opinion. Here, one user can see other users blogs and do comments on that if user want and do replies on other comments too.</p>
+                    </div>
+                </div>
+</footer>
+</div>
+
+
+
+{% endblock body %}

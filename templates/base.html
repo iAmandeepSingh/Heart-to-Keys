@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!--    Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="widthdevice-width, initial-scale=1, shrink-to-fit=no">
+
+     <!--    Bootstrap CSS-->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--     favicon-->
+<link rel="shortcut icon" href="static/img/blog_favicon.png" type="image/x-icon">
+
+    <title>{% block title%} {% endblock title%}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" style="color:#EEC7BE;"><b>Heart-to-Keys</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% block homeactive %} {% endblock homeactive %}">
+                <a class="nav-link" href="/"><b>Home</b> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item {% block blogactive %} {% endblock blogactive %}">
+                <a class="nav-link" href="/blog"><b>Blog</b></a>
+            </li>
+            <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+                <a class="nav-link" href="/contact"><b>Contact</b></a>
+            </li>
+            <li class="nav-item {% block createblogactive %} {% endblock createblogactive %}">
+                <a class="nav-link" href="/createblog"><b>Create Blog</b></a>
+            </li>
+        </ul>
+        <div class="form-inline ml-auto">
+        <form method="get" action="/search" class="my-2 my-lg-0 mx-3">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-2">
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <b>Welcome- {{request.user}}</b>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout"><b>Logout</b></a>
+        </div>
+         </li>
+       </ul>
+
+
+        {% else %}
+        <!-- Button to trigger login modal -->
+            <button type="button" class="btn btn-outline-success mr-2" data-toggle="modal" data-target="#loginModal">
+            <b>Login</b>
+        </button>
+
+        <!-- Button to trigger signup modal -->
+        <button type="button" class="btn btn-outline-success mr-2" data-toggle="modal" data-target="#signupModal">
+            <b>Sign up</b>
+        </button>
+
+        {% endif %}
+    </div>
+    </div>
+
+</nav>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message: </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<!--signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true" style="font-family: monospace,Monaco; font-size: 25px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="color: white; background-color: black;">
+        <h3 class="modal-title" id="signupModalTitle"><b>Signup</b></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/signup" method="post">
+          <div class="form-group">
+    <label for="username"><b>Username</b></label>
+    <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="username" name="username" placeholder="Choose a unique Username"  required>
+  </div>
+  <div class="form-group">
+    <label for="fname"><b>First Name</b></label>
+    <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="fname" name="fname" placeholder="First Name" required>
+  </div>
+  <div class="form-group">
+    <label for="lname"><b>Last Name</b></label>
+    <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
+  </div>
+  <div class="form-group">
+    <label for="email"><b>Email address</b></label>
+    <input type="email" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+  </div>
+   <div class="form-group">
+    <label for="pass1"><b>Password</b></label>
+    <input type="password" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="pass1" name="pass1" placeholder="Choose your password" required>
+  </div>
+   <div class="form-group">
+    <label for="pass2"><b>Confirm Password</b></label>
+    <input type="password" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="pass2" name="pass2" placeholder="Enter your password again" required>
+  </div>
+
+
+          {% csrf_token %}
+          <button type="submit" class="btn btn-outline-success btn-lg"><b>Sign Up</b></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true" style="font-family: serif,Times New Roman; font-size: 25px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="color: white; background-color: black;">
+        <h3 class="modal-title" id="loginModalTitle" style="text-align: center;"><b>Login to Continue</b></h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="post">
+            {% csrf_token %}
+          <div class="form-group">
+    <label for="username"><b>Username</b></label>
+    <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="loginusername" name="loginusername" placeholder="Username" required>
+  </div>
+      {% csrf_token %}
+   <div class="form-group">
+    <label for="pass1"><b>Password</b></label>
+    <input type="password" style="color: black;border-style: outset;display:block;box-shadow: 5px 5px 5px grey;" class="form-control" id="loginpassword" name="loginpassword" placeholder="Enter your password" required>
+  </div>
+       <button type="submit" class="btn btn-outline-success btn-lg"><b>Login</b></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% block body %}
+{% endblock body %}
+{% block js %}
+{% endblock %}
+
+<!--optional Javascript-->
+<!--JQuery first, then popper, js, then Bootstrap Js-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

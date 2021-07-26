@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title%} Contact {% endblock title%}
+{% block contactactive %} active {% endblock contactactive %}
+{% block body %}
+<style type="text/css">
+  #finalDiv{
+    font-family: "Monospace", Lucida Console;
+  }
+
+</style>
+
+<div id="finalDiv"class="container my-4 shadow-lg p-3 mb-5 bg-body rounded">
+
+    <h1 class="text-center">Contact Us</h1>
+    <!-- <div> -->
+<form action="/contact" method="post">
+    {% csrf_token %}
+    <div class="mx-3">
+     <div class="row">
+    <div class="col form-group">
+    <h4><label for="name">Name</label></h4>
+    <input type="text" style="color: black;border-style: inset;display:block;box-shadow: 2px 2px 2px;"class="form-control" id="name" name="name" aria-describedby="name">
+  </div>
+  <div class="col form-group">
+    <h4><label for="phone">Phone Number</label></h4>
+    <input type="phone" style="color: black;border-style: inset;display:block;box-shadow: 2px 2px 2px;"class="form-control" id="phone" name="phone">
+  </div>
+  </div>
+  <div class="form-group w-25">
+    <h4><label for="email">Email address</label></h4>
+    <input type="email" style="color: black;border-style: inset;display:block;box-shadow: 2px 2px 2px ;"class="form-control" id="email" name="email" aria-describedby="emailHelp" >
+    <small id="emailHelp" class="form-text text-muted"><b>We'll never share your email with anyone else.</b></small>
+  </div>
+  
+    <div class="form-group">
+    <h4><label for="content">Describe your issue:</label></h4>
+    <textarea class="form-control"style="color: black;border-style: inset;display:block;box-shadow: 2px 2px 2px;" name="content" id="content" cols="30" rows = "5"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-outline-dark btn-lg"><b>Submit</b></button>
+        </div>
+</form>
+
+        <!-- </div> -->
+
+    </div>
+    </div>
+<!-- <section class="text-gray-600 body-font relative ">
+  <div class="container px-5 py-24 mx-auto border-1 shadow p-0 mx-24 my-6">
+    <div class="flex flex-col text-center w-full mb-12">
+      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
+    </div>
+    <div class=" mx-auto">
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+            <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+            <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+        </div>
+          <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="phone" class="leading-7 text-sm text-gray-600">Phone Number</label>
+            <input type="phone" id="phone" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <div class="relative">
+            <label for="message" class="leading-7 text-sm text-gray-600">Describe your issue:</label>
+            <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+          </div>
+        </div>
+          <div class="">
+        <div class="p-2">
+          <a type="submit" role="button" href="/contact" class="flex m-40% text-white bg-gray-800 border-0 py-2 mb-3 px-8 focus:outline-none hover:bg-gray-600 rounded text-lg">Submit</a>
+        </div>
+              </div>
+
+    </div>
+  </div>
+      </div>
+</section> -->
+{% endblock body %}

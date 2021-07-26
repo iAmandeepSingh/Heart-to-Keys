@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Create_Blog {% endblock title %}
+{% block createblogactive %} active {% endblock createblogactive %}
+
+{% block body %}
+<style type="text/css">
+  #finalDiv{
+    background-color: white; 
+    font-family: "Cursive", Papyrus;
+  }
+  body{
+    background-color: gray;
+  }
+  #heading{
+    font-family: "Cursive", Lucida Handwriting;
+
+  }
+
+</style>
+    {% if user.is_authenticated %}
+    <div id="finalDiv"class="container my-5 shadow-lg p-3 mb-5 bg-body rounded">
+    <h1 id="heading"class="text-center">Create Your Blog</h1>
+    <form  action = "" method="POST" >
+        {% csrf_token %}
+        <div class="row my-3">
+        <div class="col form-group">
+          <h3><label for="title"><b>Title of Blog</b></label></h3>
+          <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 2px 2px 2px grey;" 
+          class=" form-control" id="title" name="title">
+        </div>
+
+      <div class="col form-group">
+        <h3><label for="author"><b>Name of writer</b></label></h3>
+        <input type="text" style="color: black;border-style: outset;display:block;box-shadow: 2px 2px 2px grey;" class="form-control" id="author" name="author">
+      </div>
+        </div>
+        <div class="form-group">
+          <h3><label for="content"><b>Content</b></label></h3>
+          <textarea class="form-control" style="color: black;border-style: outset;display:block;box-shadow: 2px 2px 2px grey;" id="content" rows="3" name="content"></textarea>
+        </div>
+         
+        <button type="submit" class="btn btn-outline-success btn-lg"><b>Create</b></button>
+      </form>
+    </div>
+
+  {% else %}
+<div class="text-center">
+    <h1 style="color:white">Please login to post the blog</h1>
+</div>
+
+  {% endif %}
+
+{% endblock body %}
